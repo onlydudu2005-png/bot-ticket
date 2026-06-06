@@ -38,6 +38,7 @@ class TicketView(discord.ui.View):
         custom_id="anuncio_ticket"
     )
     async def anuncio_ticket(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.defer(ephemeral=True)
         print("BOTÃO ANÚNCIO CLICADO")
 
         guild = interaction.guild
@@ -109,7 +110,7 @@ class TicketView(discord.ui.View):
             view=CloseTicketView()
         )
 
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"✅ Ticket criado: {canal.mention}",
             ephemeral=True
         )
@@ -121,6 +122,7 @@ class TicketView(discord.ui.View):
         custom_id="denuncia_ticket"
     )
     async def denuncia_ticket(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.defer(ephemeral=True)
         print("BOTÃO DENÚNCIA CLICADO")
 
         guild = interaction.guild
@@ -181,8 +183,8 @@ class TicketView(discord.ui.View):
             view=CloseTicketView()
         )
 
-        await interaction.response.send_message(
-            f"✅ Denúncia criada: {canal.mention}",
+        await interaction.followup.send(
+            f"✅ Ticket criado: {canal.mention}",
             ephemeral=True
         )
 
@@ -213,3 +215,5 @@ class Ticket(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(Ticket(bot))
+    bot.add_view(TicketView())
+    bot.add_view(CloseTicketView())
