@@ -27,7 +27,7 @@ async def main():
 
     except Exception as e:
         print(f"❌ ERRO: {e}")
-        input("Pressione Enter...")
+      
 
 asyncio.run(main())
 
