@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 
-STAFF_ROLE_ID = 1510432038107217992
+STAFF_ROLE_ID = 1510431354255442003
 CATEGORY_ID = 1510448421780062308
 
 
@@ -46,6 +46,8 @@ class TicketView(discord.ui.View):
 
         category = guild.get_channel(CATEGORY_ID)
         staff_role = guild.get_role(STAFF_ROLE_ID)
+        for role in guild.roles:
+            print(role.name, role.id)
 
         canal_existente = discord.utils.get(
             guild.channels,
